@@ -10,30 +10,33 @@ var timeleft = document.querySelector(".time-left");
 var resultScreen = document.querySelector(".result-screen");
 var currentWord = "";
 var time = 150;
+var interval;
 
-console.log(timeleft)
-console.log(time)
+
 
 function startGame() {
     intro.setAttribute("class", "hidden");
     gameBox.removeAttribute("class", "hidden");
-
+    interval = setInterval(clock, 1000) //added set interval to a var
     getWord();
-    setInterval(clock, 1000)
+    
+   
    
 }
 
+
+// Pull up a word
 function getWord() {
-
     var index = Math.floor(Math.random() * wordBank.length);
-        currentW = this.wordBank[index];
-        console.log(currentW);
-
+    currentW = this.wordBank[index];
     currentWord = currentW.split('');
-    console.log(currentWord);
     displayBlanks()
 }
 
+
+// convert the word to an array
+// iterate over index to return # of letters
+// # letters => spaces for letters
 function displayBlanks() {
 var gameBoxul = document.createElement("ul")
 gameBox.appendChild(gameBoxul)
@@ -47,32 +50,37 @@ gameBox.appendChild(gameBoxul)
     }    
 }
 
+function gameOver() {
+    clearInterval(interval)
+} // added gameOver function 
+
+
+// variable to hold our word
+// input submit
+// input = current word array
+// input === display the letter
+// !== add input to guesses
 function displayCorrect(){
   var userGuess = userInput.value;
-  console.log(userGuess)
+  
+  
     // if ()
 }
 
 function clock(){
     time--;
     timeleft.textContent = time;
-    console.log(time)
+    timeleft.setAttribute("class", "hidden"); // added so that if the game ends the clock gets hidden
+    
+
+    if (time <= 0) {
+        endGame ()
+    } //added so that if the time runs out it will end the game
 }
 
 guessBtn.addEventListener("click", displayCorrect); 
 startBtn.addEventListener("click", startGame);
 
-// Pull up a word
-// convert the word to an array
-// iterate over index to return # of letters
-// # letters => spaces for letters
-// variable to hold our word
-// input submit
-// input = current word array
-// input === display the letter
-// !== add input to guesses
-// ???
-// if time runs out => game over
-// localstorage for wins and losses
 
+// moved pseudo code to corresponding functions 
 
