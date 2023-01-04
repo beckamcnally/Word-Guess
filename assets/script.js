@@ -16,8 +16,10 @@ var time = 150;
 var interval;
 var letters;
 var allowedGuesses = 10
-var losses = 0;
-var wins = 0;
+
+var wins = localStorage.getItem("wins", wins);
+var losses = localStorage.getItem("losses", losses);
+
 
 function startGame() {
     intro.setAttribute("class", "hidden");
@@ -25,6 +27,12 @@ function startGame() {
     turnsLeft.textContent = allowedGuesses
     interval = setInterval(clock, 1000) 
     getWord();
+
+    localStorage.setItem("losses", losses)
+    localStorage.setItem("wins", wins)
+
+    // var cumulativeW = localStorage.getItem("wins", wins);
+    // var cumulativeL = localStorage.getItem("losses", losses);
 }
 
 // Pull up a word
@@ -62,8 +70,11 @@ function gameOver() {
         timeleft.textContent = "0";
     }
 
-    winField.textContent = wins;
-    lossField.textContent = losses
+
+    winField.textContent = cumulativeW;
+    lossField.textContent = cumulativeL;
+
+
 
 } 
 
