@@ -25,7 +25,7 @@ function startGame() {
     intro.setAttribute("class", "hidden");
     gameBox.removeAttribute("class", "hidden");
     turnsLeft.textContent = allowedGuesses
-    interval = setInterval(clock, 1000) 
+    interval = setInterval(clock, 1000)
     getWord();
 
     localStorage.setItem("losses", losses)
@@ -46,27 +46,44 @@ function getWord() {
 // convert the word to an array
 // iterate over index to return # of letters
 // # letters => spaces for letters
-function displayBlanks() {
-var gameBoxul = document.createElement("ul")
-gameBox.appendChild(gameBoxul)
+function displayBlanks(userGuess) {
+    var gameBoxul = document.createElement("ul")
+    gameBox.appendChild(gameBoxul)
+    var letterArray = [];
 
-    for (var index = 0; index < currentWord.length; index++) {
+
+    for (var index = 0; index < currentWord.length; index++) { //This creates the spaces for the characters
         letters = currentWord[index];
         var gameBoxli = document.createElement("li")
         gameBoxul.appendChild(gameBoxli)
-        // gameBox.textContent = letters
-        console.log(currentWord)
-    }    
+        letterArray = letters.split("")
+
+
+
+        // console.log(letterArray[0])
+        // console.log(userGuess === letterArray[0])
+        // if (userGuess === letterArray[0]) {
+        //     gameBoxli.textContent = letterArray[0];
+
+    }
+
+
+    // gameBoxli.textContent = letters
+
+    console.log(currentWord)
+
+    // console.log(typeof (letters))
 }
+
 
 function gameOver() {
     clearInterval(interval)
-    timeleft.setAttribute("class", "hidden"); 
+    timeleft.setAttribute("class", "hidden");
     resultScreen.removeAttribute("class", "hidden");
     gameBox.setAttribute("class", "hidden");
-    
-    if (time < 0){
-        losses ++;
+
+    if (time < 0) {
+        losses++;
         timeleft.textContent = "0";
     }
 
@@ -76,7 +93,7 @@ function gameOver() {
 
 
 
-} 
+}
 
 // variable to hold our word
 // input submit
@@ -86,34 +103,42 @@ function gameOver() {
 
 function printWrong(e) {
     console.log(e)
-    userKUp =  e.key;
-    guessedLetters.textContent =  userKUp 
+    userKUp = e.key;
+    guessedLetters.textContent = userKUp
 }; // need to figure out how to get it to add to the letters instead of just show the
 
 document.addEventListener("keydown", function (event) {
-   
-var userGuess =  event.key.toLowerCase();
-  console.log(userGuess)
-  if (currentWord.includes(userGuess)) {
-    console.log("yes")
-  } else { 
-    allowedGuesses --;
-    turnsLeft.textContent = allowedGuesses
-    
-    document.addEventListener("keyup", printWrong)
-    if (allowedGuesses === 0){
-        losses++;
-        gameOver()
-    } // added so that if you run out of lives the game ends
-  }
+    allowedChars = "qwertyuiopasdfghjklzxcvbnm"
+    var userGuess = event.key.toLowerCase();
+    var charList = allowedChars.split('')
 
-//     var winCondition = false;
+    // console.log(event.key.includes(allowedChars))
+    if (userGuess.includes(allowedChars)) {
+        console.log('yep')
+    }
+    console.log(userGuess)
+
+
+    if (currentWord.includes(userGuess)) {
+        console.log("yes")
+    } else {
+        allowedGuesses--;
+        turnsLeft.textContent = allowedGuesses
+
+        document.addEventListener("keyup", printWrong)
+        if (allowedGuesses === 0) {
+            losses++;
+            gameOver()
+        } // added so that if you run out of lives the game ends
+    }
+
+    //     var winCondition = false;
 });
 
-function clock(){
+function clock() {
     time--;
     timeleft.textContent = time;
-   
+
     if (time === 0) {
         gameOver()
     } //added so that if the time runs out it will end the game
