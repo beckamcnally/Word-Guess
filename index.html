@@ -21,12 +21,19 @@
     </div>
 
     <div class="game-box hidden">
-        <label>Make your guess here:</label><input type="text" id="userInput">
-        <button id="guessbtn">Submit</button>
+        <!-- <label>Make your guess here:</label><input type="text" id="userInput"> --> <!--took these out becuase with the keydown event they were not needed. We could still use the intput box but we would have to figure out how to clear it with every guess. -->
+        <!-- <button id="guessbtn">Submit</button> -->
+        <p>This is the gameBox</p>
+        <p>You have: <span id="turnsLeft"></span> turns left</p>
+        <div id="guessedLetters"></div>
     </div>
 
     <div class="result-screen hidden">
-        <h2>Woo</h2>
+        <h2>This is the Result Box</h2>
+        <div>
+        <p>Losses:<span id="lossField"><span></span></p>
+        <p>Wins:<span id="winField"><span></span></p>
+        </div>
     </div>
 
 <script src="./assets/script.js"></script>
