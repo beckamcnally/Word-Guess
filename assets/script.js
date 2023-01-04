@@ -12,6 +12,7 @@ var currentWord = "";
 var time = 150;
 var interval;
 var letters;
+var allowedGuesses = 10
 
 function startGame() {
     intro.setAttribute("class", "hidden");
@@ -45,8 +46,14 @@ gameBox.appendChild(gameBoxul)
 }
 
 function gameOver() {
-    timeleft.setAttribute("class", "hidden"); 
     clearInterval(interval)
+    timeleft.setAttribute("class", "hidden"); 
+    resultScreen.removeAttribute("class", "hidden");
+    gameBox.addAttribute("class", "hidden"); // not hiding
+    
+    if (time < 0){
+        timeleft.textContent = "0";
+    }
 } 
 
 // variable to hold our word
@@ -58,8 +65,6 @@ function gameOver() {
 function printWrong(e) {
     console.log(e)
     userKUp =  e.key;
-
-    
     guessedLetters.textContent =  userKUp 
 }; // need to figure out how to get it to add to the letters instead of just show the
 
@@ -67,25 +72,26 @@ document.addEventListener("keydown", function (event) {
    
 var userGuess =  event.key.toLowerCase();
   console.log(userGuess)
-
   if (currentWord.includes(userGuess)) {
     console.log("yes")
   } else {
+    allowedGuesses --;
 
     document.addEventListener("keyup", printWrong)
+    if (allowedGuesses === 0){
+        gameOver()
+    } // goes to game over but still lets you guess
   }
 
 //     var winCondition = false;
-//   
-
 });
 
 function clock(){
     time--;
     timeleft.textContent = time;
    
-    if (time <= 0) {
-        endGame ()
+    if (time === 0) {
+        gameOver()
     } //added so that if the time runs out it will end the game
 }
 
