@@ -1,6 +1,8 @@
 var wordBank = ["car", "shea", "doggy", "bensan"]
 
 var guessedLetters = document.getElementById("guessedLetters")
+var lossField = document.getElementById("lossField");
+var winField = document.getElementById("winField");
 var guessBtn = document.getElementById("guessbtn")
 var userInput = document.getElementById("userInput")
 var intro = document.querySelector(".intro-box");
@@ -13,6 +15,8 @@ var time = 150;
 var interval;
 var letters;
 var allowedGuesses = 10
+var losses = 0;
+var wins = 0;
 
 function startGame() {
     intro.setAttribute("class", "hidden");
@@ -49,11 +53,16 @@ function gameOver() {
     clearInterval(interval)
     timeleft.setAttribute("class", "hidden"); 
     resultScreen.removeAttribute("class", "hidden");
-    gameBox.addAttribute("class", "hidden"); // not hiding
+    gameBox.setAttribute("class", "hidden"); 
     
     if (time < 0){
+        losses ++;
         timeleft.textContent = "0";
     }
+
+    winField.textContent = wins;
+    lossField.textContent = losses
+
 } 
 
 // variable to hold our word
@@ -76,11 +85,12 @@ var userGuess =  event.key.toLowerCase();
     console.log("yes")
   } else {
     allowedGuesses --;
-
+    
     document.addEventListener("keyup", printWrong)
     if (allowedGuesses === 0){
+        losses++;
         gameOver()
-    } // goes to game over but still lets you guess
+    } // added so that if you run out of lives the game ends
   }
 
 //     var winCondition = false;
@@ -95,11 +105,8 @@ function clock(){
     } //added so that if the time runs out it will end the game
 }
 
-// userInput.addEventListener("keydown", displayCorrect(event){
-//     console.log (event)
-// });
-// guessBtn.addEventListener("click", displayCorrect); 
+
 startBtn.addEventListener("click", startGame);
 
-// moved pseudo code to corresponding functions 
+
 
