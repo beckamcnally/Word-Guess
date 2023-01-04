@@ -1,6 +1,6 @@
 var wordBank = ["car", "shea", "doggy", "bensan"]
 
-
+var guessedLetters = document.getElementById("guessedLetters")
 var guessBtn = document.getElementById("guessbtn")
 var userInput = document.getElementById("userInput")
 var intro = document.querySelector(".intro-box");
@@ -11,17 +11,15 @@ var resultScreen = document.querySelector(".result-screen");
 var currentWord = "";
 var time = 150;
 var interval;
+var letters;
 
 
 
 function startGame() {
     intro.setAttribute("class", "hidden");
     gameBox.removeAttribute("class", "hidden");
-    interval = setInterval(clock, 1000) //added set interval to a var
+    interval = setInterval(clock, 1000) 
     getWord();
-    
-   
-   
 }
 
 
@@ -42,17 +40,18 @@ var gameBoxul = document.createElement("ul")
 gameBox.appendChild(gameBoxul)
 
     for (var index = 0; index < currentWord.length; index++) {
-        var letters = currentWord[index];
+        letters = currentWord[index];
         var gameBoxli = document.createElement("li")
         gameBoxul.appendChild(gameBoxli)
         // gameBox.textContent = letters
-        console.log(letters)
+        console.log(currentWord)
     }    
 }
 
 function gameOver() {
+    timeleft.setAttribute("class", "hidden"); 
     clearInterval(interval)
-} // added gameOver function 
+} 
 
 
 // variable to hold our word
@@ -60,17 +59,29 @@ function gameOver() {
 // input = current word array
 // input === display the letter
 // !== add input to guesses
-function displayCorrect(){
-  var userGuess = userInput.value;
-  
-  
-    // if ()
-}
+userInput.addEventListener("keydown", function (event) {
+    console.log (event)
+var userGuess =  event.key.toLowerCase();;
+  console.log(userGuess)
+
+  if (currentWord.includes(userGuess)) {
+    console.log("yes")
+    userInput.textContent= ""
+  } else {
+    userInput.textContent= ""
+    guessedLetters.textContent = userGuess
+  }
+
+//     var winCondition = false;
+//   
+
+
+});
 
 function clock(){
     time--;
     timeleft.textContent = time;
-    timeleft.setAttribute("class", "hidden"); // added so that if the game ends the clock gets hidden
+    
     
 
     if (time <= 0) {
@@ -78,7 +89,10 @@ function clock(){
     } //added so that if the time runs out it will end the game
 }
 
-guessBtn.addEventListener("click", displayCorrect); 
+// userInput.addEventListener("keydown", displayCorrect(event){
+//     console.log (event)
+// });
+// guessBtn.addEventListener("click", displayCorrect); 
 startBtn.addEventListener("click", startGame);
 
 
