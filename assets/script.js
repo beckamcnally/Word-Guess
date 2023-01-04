@@ -13,15 +13,12 @@ var time = 150;
 var interval;
 var letters;
 
-
-
 function startGame() {
     intro.setAttribute("class", "hidden");
     gameBox.removeAttribute("class", "hidden");
     interval = setInterval(clock, 1000) 
     getWord();
 }
-
 
 // Pull up a word
 function getWord() {
@@ -30,7 +27,6 @@ function getWord() {
     currentWord = currentW.split('');
     displayBlanks()
 }
-
 
 // convert the word to an array
 // iterate over index to return # of letters
@@ -53,37 +49,41 @@ function gameOver() {
     clearInterval(interval)
 } 
 
-
 // variable to hold our word
 // input submit
 // input = current word array
 // input === display the letter
 // !== add input to guesses
-userInput.addEventListener("keydown", function (event) {
-    console.log (event)
-var userGuess =  event.key.toLowerCase();;
+
+function printWrong(e) {
+    console.log(e)
+    userKUp =  e.key;
+
+    
+    guessedLetters.textContent =  userKUp 
+}; // need to figure out how to get it to add to the letters instead of just show the
+
+document.addEventListener("keydown", function (event) {
+   
+var userGuess =  event.key.toLowerCase();
   console.log(userGuess)
 
   if (currentWord.includes(userGuess)) {
     console.log("yes")
-    userInput.textContent= ""
   } else {
-    userInput.textContent= ""
-    guessedLetters.textContent = userGuess
+
+    document.addEventListener("keyup", printWrong)
   }
 
 //     var winCondition = false;
 //   
-
 
 });
 
 function clock(){
     time--;
     timeleft.textContent = time;
-    
-    
-
+   
     if (time <= 0) {
         endGame ()
     } //added so that if the time runs out it will end the game
@@ -94,7 +94,6 @@ function clock(){
 // });
 // guessBtn.addEventListener("click", displayCorrect); 
 startBtn.addEventListener("click", startGame);
-
 
 // moved pseudo code to corresponding functions 
 
