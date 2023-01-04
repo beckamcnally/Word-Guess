@@ -9,14 +9,17 @@ var gameBox = document.querySelector(".game-box");
 var timeleft = document.querySelector(".time-left");
 var resultScreen = document.querySelector(".result-screen");
 var currentWord = "";
+var time = 150;
 
-
+console.log(timeleft)
+console.log(time)
 
 function startGame() {
     intro.setAttribute("class", "hidden");
     gameBox.removeAttribute("class", "hidden");
 
     getWord();
+    setInterval(clock, 1000)
    
 }
 
@@ -48,6 +51,12 @@ function displayCorrect(){
   var userGuess = userInput.value;
   console.log(userGuess)
     // if ()
+}
+
+function clock(){
+    time--;
+    timeleft.textContent = time;
+    console.log(time)
 }
 
 guessBtn.addEventListener("click", displayCorrect); 
