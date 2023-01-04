@@ -1,5 +1,6 @@
 var wordBank = ["car", "shea", "doggy", "bensan"]
 
+var turnsLeft = document.getElementById("turnsLeft")
 var guessedLetters = document.getElementById("guessedLetters")
 var lossField = document.getElementById("lossField");
 var winField = document.getElementById("winField");
@@ -21,6 +22,7 @@ var wins = 0;
 function startGame() {
     intro.setAttribute("class", "hidden");
     gameBox.removeAttribute("class", "hidden");
+    turnsLeft.textContent = allowedGuesses
     interval = setInterval(clock, 1000) 
     getWord();
 }
@@ -53,7 +55,7 @@ function gameOver() {
     clearInterval(interval)
     timeleft.setAttribute("class", "hidden"); 
     resultScreen.removeAttribute("class", "hidden");
-    gameBox.setAttribute("class", "hidden"); 
+    gameBox.setAttribute("class", "hidden");
     
     if (time < 0){
         losses ++;
@@ -83,8 +85,9 @@ var userGuess =  event.key.toLowerCase();
   console.log(userGuess)
   if (currentWord.includes(userGuess)) {
     console.log("yes")
-  } else {
+  } else { 
     allowedGuesses --;
+    turnsLeft.textContent = allowedGuesses
     
     document.addEventListener("keyup", printWrong)
     if (allowedGuesses === 0){
