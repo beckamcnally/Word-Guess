@@ -11,11 +11,16 @@ var startBtn = document.querySelector(".start-btn");
 var gameBox = document.querySelector(".game-box");
 var timeleft = document.querySelector(".time-left");
 var resultScreen = document.querySelector(".result-screen");
+
 var currentWord = "";
 var time = 150;
 var interval;
 var letters;
-var allowedGuesses = 10
+var userGuess;
+var wrongArray = [];
+var allowedGuesses = 10;
+var allowedChars = "qwertyuiopasdfghjklzxcvbnm"
+var charList = allowedChars.split('');
 
 var wins = localStorage.getItem("wins", wins);
 var losses = localStorage.getItem("losses", losses);
@@ -40,7 +45,18 @@ function getWord() {
     var index = Math.floor(Math.random() * wordBank.length);
     currentW = this.wordBank[index];
     currentWord = currentW.split('');
-    displayBlanks()
+    displayBlanks();
+
+
+    document.addEventListener("keydown", function (event) {
+        userGuess = event.key.toLowerCase();
+        
+        if (charList.includes(userGuess)) {
+            answerChecker()
+        } else {
+            return;
+        }
+    });
 }
 
 // convert the word to an array
@@ -51,28 +67,14 @@ function displayBlanks(userGuess) {
     gameBox.appendChild(gameBoxul)
     var letterArray = [];
 
-
     for (var index = 0; index < currentWord.length; index++) { //This creates the spaces for the characters
         letters = currentWord[index];
         var gameBoxli = document.createElement("li")
         gameBoxul.appendChild(gameBoxli)
         letterArray = letters.split("")
-
-
-
-        // console.log(letterArray[0])
-        // console.log(userGuess === letterArray[0])
-        // if (userGuess === letterArray[0]) {
-        //     gameBoxli.textContent = letterArray[0];
-
     }
-
-
     // gameBoxli.textContent = letters
 
-    console.log(currentWord)
-
-    // console.log(typeof (letters))
 }
 
 
@@ -90,9 +92,6 @@ function gameOver() {
 
     winField.textContent = cumulativeW;
     lossField.textContent = cumulativeL;
-
-
-
 }
 
 // variable to hold our word
@@ -102,22 +101,16 @@ function gameOver() {
 // !== add input to guesses
 
 function printWrong(e) {
-    console.log(e)
     userKUp = e.key;
-    guessedLetters.textContent = userKUp
-}; // need to figure out how to get it to add to the letters instead of just show the
+    wrongArray.push(userKUp)
+    console.log(wrongArray)
+    guessedLetters.textContent = wrongArray.toString(" ")
+}; // need to figure out how to get it to add to the letters instead of just show the last one
 
-document.addEventListener("keydown", function (event) {
-    allowedChars = "qwertyuiopasdfghjklzxcvbnm"
-    var userGuess = event.key.toLowerCase();
-    var charList = allowedChars.split('')
 
-    // console.log(event.key.includes(allowedChars))
-    if (userGuess.includes(allowedChars)) {
-        console.log('yep')
-    }
-    console.log(userGuess)
 
+function answerChecker(){
+    console.log("made it to the checker")
 
     if (currentWord.includes(userGuess)) {
         console.log("yes")
@@ -129,11 +122,11 @@ document.addEventListener("keydown", function (event) {
         if (allowedGuesses === 0) {
             losses++;
             gameOver()
-        } // added so that if you run out of lives the game ends
+        } 
     }
-
+}
     //     var winCondition = false;
-});
+
 
 function clock() {
     time--;
