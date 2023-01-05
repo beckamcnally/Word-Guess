@@ -1,6 +1,10 @@
 .hidden {
-    display: none;
-    
+    display: none;   
+}
+
+body {
+    background: #5a9ccc;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 ul {
@@ -9,8 +13,84 @@ ul {
     
 }
 
+header {
+    text-align: center;
+    font-size: 40px;
+    Color: #051d1f;
+}
+
+.time-left {
+    color: hotpink;
+    font-weight: 600;
+}
+
+
+.intro-box {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    padding: 30px;
+    
+}
+
+.start-btn {
+    padding: 30px;
+    border-radius: 5px;
+    background: #42637a;
+    border: #42637a;
+    font-size: 25px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+div {
+    
+    margin: 5px 
+}
+
+.game-box {
+    
+}
+
+.play-text {
+    margin: 10px 300px;
+}
+
+#turn-txt {
+    text-align: center;    
+}
+
+#turnsLeft {
+    color: hotpink;
+    font-size: 25px;
+    font-weight: 300;
+}
+
+
+#guessedLetters {
+    padding: 30px;
+    margin-left: 650px;
+    margin-right: 400px;
+    font-size: 18px;
+    color: red;  
+}
+
+ul {
+    margin-left: 650px;
+}
 li {
     border: 5px solid green;
-    margin-left: 5px;
+    margin-left: 10px;
     padding: 5px;
+}
+
+#end {
+    text-align: center;
+}
+
+#end h2 {
+    font-size: 30px;
+}
+
+#lossField, #winField {
+    font-weight: 300;
 }
