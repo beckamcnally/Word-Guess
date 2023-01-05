@@ -2,3 +2,15 @@
     display: none;
     
 }
+
+ul {
+    list-style: none;
+    display: flex;
+    
+}
+
+li {
+    border: 5px solid green;
+    margin-left: 5px;
+    padding: 5px;
+}
