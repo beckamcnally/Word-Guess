@@ -1,40 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/style.css">
-    <title>Document</title>
-</head>
-<body>
-
-    <header>
-        <h1>Hangman</h1>
-        <p class="time-left"></p>
-    </header>
-
-    <div class="intro-box">
-
-        <button class="start-btn">Let's Begin Hangman</button>
-
-    </div>
-
-    <div class="game-box hidden">
-        <p>Press any alphabet key to make a selection. To win fill in all the blanks to reveal the word. You have ten guesses and is you use them all or the time runs out then you loose. When the game is over the fun has not ended replay and keep track of your wins and losses.</p>
-        <p>You have: <span id="turnsLeft"></span> turns left</p>
-        <div id="guessedLetters"></div>
-    </div>
-
-    <div class="result-screen hidden">
-        <h2>This is the Result Box</h2>
-        <div>
-        <p>Losses:<span id="lossField"><span></span></p>
-        <p>Wins:<span id="winField"><span></span></p>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./assets/style.css">
+        <title>Document</title>
+    </head>
+    <body>
+    
+        <header>
+            <h1>Hangman</h1>
+            <p class="time-left"></p>
+        </header>
+    
+        <div class="intro-box">
+            
+            <button class="start-btn">Let's Begin Hangman</button>
+    
         </div>
-    </div>
-
-<script src="./assets/script.js"></script>
-
-</body>
-</html>
+    
+        <div class="game-box hidden">
+            <p class="play-text">Press any alphabet key to make a selection. To win fill in all the blanks to reveal the word. You have ten guesses and is you use them all or the time runs out then you loose. When the game is over the fun has not ended replay and keep track of your wins and losses.</p>
+            <p class="play-text" id="turn-txt">You have: <span id="turnsLeft"></span> turns left</p>
+            <div id="guessedLetters"></div>
+        </div>
+    
+        <div class="result-screen hidden">
+            <div id="end">
+            <h2 >Game Over</h2>
+            <p>Losses:<span id="lossField"></span></p>
+            <p>Wins:<span id="winField"></span></p>
+            </div>
+        </div>
+    
+    <script src="./assets/script.js"></script>
+    
+    </body>
+    </html>

@@ -14,7 +14,7 @@ var resultScreen = document.querySelector(".result-screen");
 var gameBoxul = document.createElement("ul")
 
 var currentWord = "";
-var time = 150;
+var time = 150; 
 var interval;
 var letters;
 var userGuess;
@@ -32,6 +32,8 @@ function startGame() {
     gameBox.removeAttribute("class", "hidden");
     turnsLeft.textContent = allowedGuesses
     interval = setInterval(clock, 1000)
+    losses = localStorage.getItem("losses", losses)
+    wins = localStorage.getItem("wins", wins)
     getWord();
 
 }
@@ -82,11 +84,12 @@ function gameOver() {
         timeleft.textContent = "0";
     }
 
-    winField.textContent = wins;
-    lossField.textContent = losses;
 
-    // localStorage.setItem("losses", losses)
-    // localStorage.setItem("wins", wins)
+    localStorage.setItem("losses", losses)
+    localStorage.setItem("wins", wins)
+
+    winField.textContent = wins
+    lossField.textContent = losses
 }
 
 // variable to hold our word
@@ -98,8 +101,9 @@ function printWrong(e) {
     userKUp = e.key;
     wrongArray.push(userKUp)
     guessedLetters.textContent = wrongArray.toString(" ")
-}; // need to figure out how to get it to add to the letters instead of just show the last one
+}; 
 
+// check userGuesses and handles them accordingly
 function answerChecker(){
     console.log("made it to the checker")
 
@@ -124,7 +128,7 @@ function answerChecker(){
     }  
 }
 
-// tells answerchecker what to display for correct answer
+// tells answerChecker what to display for correct answer
 function what2Print(){
     var listElList = document.querySelectorAll("li")
 if (userGuess === currentWord[0]) {
@@ -144,6 +148,7 @@ if (userGuess === currentWord[0]) {
 }
 }
 
+// makes the set interval show and if the time runs out it will end the game
 function clock() {
     time--;
     timeleft.textContent = time;
@@ -151,9 +156,8 @@ function clock() {
     if (time === 0) {
         losses ++;
         gameOver()
-    } //added so that if the time runs out it will end the game
+    } 
 }
-
 
 startBtn.addEventListener("click", startGame);
 
