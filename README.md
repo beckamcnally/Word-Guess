@@ -35,7 +35,7 @@ To play the game, simply click on the "Start" button to start the game. You will
 
 ## Author Info
 
-```md
+
 ### Becka McNally 
 
 * [Portfolio](https://beckamcnally.github.io/beckamcnally/)
@@ -47,6 +47,6 @@ To play the game, simply click on the "Start" button to start the game. You will
 * [Portfolio](https://portfolio-r-edone-18qvp9bi8-dbbensan.vercel.app/)
 * [LinkedIn](https://www.linkedin.com/in/danielebensan/)
 * [Github](https://github.com/DBBENSAN)
-```
+
 
 
