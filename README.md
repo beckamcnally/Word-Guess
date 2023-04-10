@@ -48,5 +48,8 @@ To play the game, simply click on the "Start" button to start the game. You will
 * [LinkedIn](https://www.linkedin.com/in/danielebensan/)
 * [Github](https://github.com/DBBENSAN)
 
+#Credits
+
+This project was built using starter code provided by UC Berkeley Coding Bootcamp Extension. 
 
 
